@@ -63,7 +63,7 @@ class SignUpForm extends ConsumerWidget {
         ),
         SizerUtil.gapH(32),
         AppPrimaryButton(
-          text: AppStrings.signIN,
+          text: AppStrings.signUp,
           variant: ButtonVariant.primary,
           width: double.maxFinite,
           margin: EdgeInsets.symmetric(horizontal: 20.w),

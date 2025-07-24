@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:form_builder/form_builder/widgets/adim_form.dart';
 import 'package:form_builder/form_builder/widgets/app_tab_bar.dart';
+import 'package:form_builder/form_builder/widgets/guest_form.dart';
 import 'package:form_builder/form_builder/widgets/signin_form.dart';
 import 'package:form_builder/form_builder/widgets/signup_form.dart';
 import 'package:form_builder/utils/app_extensions.dart';
@@ -33,8 +35,8 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     SignInForm(),
                     SignUpForm(),
-                    Container(),
-                    Container(),
+                    AdminForm(),
+                    GuestForm(),
                   ],
                 ),
               ),
