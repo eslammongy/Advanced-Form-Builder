@@ -98,7 +98,7 @@ class AppTheme {
         color: AppColors.surfaceLight,
         elevation: 1,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
         ),
         margin: EdgeInsets.zero,
       ),
@@ -111,23 +111,23 @@ class AppTheme {
           vertical: SizerUtil.p8.w,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.borderColorLight, width: 1),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.borderColorLight, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.primaryLight, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.errorLight, width: 1),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.errorLight, width: 2),
         ),
         hintStyle: TextStyle(
@@ -317,7 +317,7 @@ class AppTheme {
         color: AppColors.surfaceDark,
         elevation: 1,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
         ),
         margin: EdgeInsets.zero,
       ),
@@ -331,23 +331,23 @@ class AppTheme {
           horizontal: SizerUtil.p12.w,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.borderColorDark, width: 1),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.borderColorDark, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.primaryDark, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.errorDark, width: 1),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SizerUtil.p12.r),
+          borderRadius: BorderRadius.circular(SizerUtil.p8.r),
           borderSide: BorderSide(color: AppColors.errorDark, width: 2),
         ),
         hintStyle: TextStyle(

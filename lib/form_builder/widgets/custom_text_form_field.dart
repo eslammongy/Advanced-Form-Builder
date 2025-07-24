@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:form_builder/form_builder/controllers/form_state.dart';
 import 'package:form_builder/theme/app_colors.dart';
 import 'package:form_builder/utils/app_extensions.dart';
 import 'package:form_builder/utils/sizer_util.dart';
-import 'package:form_builder/form_builder/controllers/form_state.dart'
-    as form_state;
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -31,14 +30,14 @@ class CustomTextFormField extends StatelessWidget {
   final Color? hintColor;
   final Widget? suffix;
   final Widget? prefix;
-  final form_state.FormField formField;
+  final FieldType formField;
   final TextInputType inputType;
   final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 45.h,
+      height: 50.h,
       width: double.infinity,
       child: TextFormField(
         controller: controller,

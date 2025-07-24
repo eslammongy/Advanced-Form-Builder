@@ -1,14 +1,14 @@
 enum FormType { signIn, signUp, guest, admin }
 
-class FormField {
-  const FormField({this.value = '', this.error, this.isValid = true});
+class FieldType {
+  const FieldType({this.value = '', this.error, this.isValid = true});
 
   final String? error;
   final bool isValid;
   final String value;
 
-  FormField copyWith({String? value, String? error, bool? isValid}) {
-    return FormField(
+  FieldType copyWith({String? value, String? error, bool? isValid}) {
+    return FieldType(
       value: value ?? this.value,
       error: error,
       isValid: isValid ?? this.isValid,
@@ -18,40 +18,40 @@ class FormField {
 
 class FormState {
   const FormState({
-    this.userName = const FormField(),
-    this.email = const FormField(),
-    this.password = const FormField(),
-    this.confirmPassword = const FormField(),
-    this.phoneNumber = const FormField(),
-    this.userId = const FormField(),
-    this.rule = const FormField(),
-    this.privacyPolicy = const FormField(),
+    this.userName = const FieldType(),
+    this.email = const FieldType(),
+    this.password = const FieldType(),
+    this.confirmPassword = const FieldType(),
+    this.phoneNumber = const FieldType(),
+    this.userId = const FieldType(),
+    this.rule = const FieldType(),
+    this.privacyPolicy = const FieldType(),
     this.formType = FormType.signIn,
     this.isSubmitting = false,
     this.isFormValid = false,
   });
 
-  final FormField confirmPassword;
-  final FormField email;
+  final FieldType confirmPassword;
+  final FieldType email;
   final FormType formType;
   final bool isFormValid;
   final bool isSubmitting;
-  final FormField password;
-  final FormField phoneNumber;
-  final FormField privacyPolicy;
-  final FormField rule;
-  final FormField userId;
-  final FormField userName;
+  final FieldType password;
+  final FieldType phoneNumber;
+  final FieldType privacyPolicy;
+  final FieldType rule;
+  final FieldType userId;
+  final FieldType userName;
 
   FormState copyWith({
-    FormField? userName,
-    FormField? email,
-    FormField? password,
-    FormField? confirmPassword,
-    FormField? phoneNumber,
-    FormField? userId,
-    FormField? rule,
-    FormField? privacyPolicy,
+    FieldType? userName,
+    FieldType? email,
+    FieldType? password,
+    FieldType? confirmPassword,
+    FieldType? phoneNumber,
+    FieldType? userId,
+    FieldType? rule,
+    FieldType? privacyPolicy,
     FormType? formType,
     bool? isSubmitting,
     bool? isFormValid,
