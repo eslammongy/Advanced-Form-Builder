@@ -11,7 +11,7 @@ class SignUpForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formState = ref.watch(formProvider);
+    final formState = ref.watch(formNotifierProvider);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -44,7 +44,7 @@ class SignUpForm extends ConsumerWidget {
         SizerUtil.gapH(12),
         CustomTextFormField(
           inputType: TextInputType.visiblePassword,
-          formField: formState.email,
+          formField: formState.password,
           obscureText: true,
           label: AppStrings.password,
           hint: AppStrings.password,
@@ -66,6 +66,7 @@ class SignUpForm extends ConsumerWidget {
           text: AppStrings.signUp,
           variant: ButtonVariant.primary,
           width: double.maxFinite,
+          isDisabled: formState.isFormValid == false,
           margin: EdgeInsets.symmetric(horizontal: 20.w),
           onPressed: () {},
         ),
