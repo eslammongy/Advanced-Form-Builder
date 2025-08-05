@@ -11,33 +11,42 @@ class SignInForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formState = ref.watch(formProvider);
+    final userEmail = ref.watch(
+      formNotifierProvider.select((value) => value.email),
+    );
+    final userPassword = ref.watch(
+      formNotifierProvider.select((value) => value.password),
+    );
+    final formNotifier = ref.read(formNotifierProvider.notifier);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        SizerUtil.gapH(8),
         CustomTextFormField(
           inputType: TextInputType.emailAddress,
-          formField: formState.email,
+          formField: userEmail,
           label: AppStrings.email,
           hint: AppStrings.email,
           prefix: Icon(Icons.email_rounded),
-          onChanged: null,
+          onChanged: (value) => formNotifier.updateEmail(value),
         ),
         SizerUtil.gapH(12),
         CustomTextFormField(
           inputType: TextInputType.visiblePassword,
-          formField: formState.email,
+          formField: userPassword,
           obscureText: true,
           label: AppStrings.password,
           hint: AppStrings.password,
           prefix: Icon(Icons.lock_rounded),
-          onChanged: null,
+          onChanged: (value) => formNotifier.updatePassword(value),
         ),
         SizerUtil.gapH(32),
         AppPrimaryButton(
           text: AppStrings.signIN,
           variant: ButtonVariant.primary,
           width: double.maxFinite,
+          isDisabled: !userEmail.isValid || !userPassword.isValid,
           margin: EdgeInsets.symmetric(horizontal: 20.w),
           onPressed: () {},
         ),
