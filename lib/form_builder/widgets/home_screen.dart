@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+ 
     return Scaffold(
       body: SafeArea(
         minimum: EdgeInsets.only(
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               Icon(Icons.person_rounded, size: 100.h),
               Text("Form Builder", style: context.textTheme.titleLarge),
               SizerUtil.gapH(40),
-              AppTabBar(),
+              const AppTabBar(),
               SizerUtil.gapH(40),
               Expanded(
                 child: TabBarView(
