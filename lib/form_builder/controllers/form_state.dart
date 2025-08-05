@@ -58,7 +58,7 @@ class FormState {
   }) {
     return FormState(
       userName: userName ?? this.userName,
-      email: email ?? this.email,
+      email: email ?? const FieldType(),
       password: password ?? this.password,
       confirmPassword: confirmPassword ?? this.confirmPassword,
       phoneNumber: phoneNumber ?? this.phoneNumber,
