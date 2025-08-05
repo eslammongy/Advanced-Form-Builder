@@ -108,7 +108,7 @@ class AppTheme {
         fillColor: AppColors.surfaceLight,
         contentPadding: EdgeInsets.symmetric(
           horizontal: SizerUtil.p12.w,
-          vertical: SizerUtil.p8.w,
+          vertical: SizerUtil.p4.w,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SizerUtil.p8.r),
@@ -135,8 +135,9 @@ class AppTheme {
           fontSize: 12.sp,
         ),
         errorStyle: TextStyle(
-          color: AppColors.errorLight.withValues(alpha: 0.7),
-          fontSize: 12.sp,
+          color: AppColors.errorLight,
+          fontSize: 11.sp,
+          height: 0.80,
         ),
         labelStyle: TextStyle(
           color: AppColors.textSecondaryLight.withValues(alpha: 0.7),
@@ -340,7 +341,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SizerUtil.p8.r),
-          borderSide: BorderSide(color: AppColors.primaryDark, width: 2),
+          borderSide: BorderSide(color: AppColors.primaryDark, width: 1),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SizerUtil.p8.r),
@@ -348,15 +349,16 @@ class AppTheme {
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SizerUtil.p8.r),
-          borderSide: BorderSide(color: AppColors.errorDark, width: 2),
+          borderSide: BorderSide(color: AppColors.errorDark, width: 1),
         ),
         hintStyle: TextStyle(
           color: AppColors.textSecondaryDark.withValues(alpha: 0.7),
           fontSize: 12.sp,
         ),
         errorStyle: TextStyle(
-          color: AppColors.errorLight.withValues(alpha: 0.7),
-          fontSize: 12.sp,
+          color: AppColors.errorDark,
+          fontSize: 11.sp,
+          height: 0.7,
         ),
         labelStyle: TextStyle(
           color: AppColors.textSecondaryDark.withValues(alpha: 0.7),
@@ -367,7 +369,6 @@ class AppTheme {
           fontSize: 12.sp,
         ),
       ),
-
       dividerTheme: DividerThemeData(
         color: AppColors.borderColorDark,
         thickness: 1,
