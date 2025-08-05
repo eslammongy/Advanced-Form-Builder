@@ -11,7 +11,7 @@ class GuestForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formState = ref.watch(formProvider);
+    final formState = ref.watch(formNotifierProvider);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
