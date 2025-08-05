@@ -37,11 +37,11 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50.h,
+      height: formField.isValid ? 50.h : 52.h,
       width: double.infinity,
       child: TextFormField(
         controller: controller,
-        style: context.textTheme.bodyLarge?.copyWith(
+        style: context.textTheme.bodyMedium?.copyWith(
           color: context.customColors.textPrimary,
         ),
         cursorColor: AppColors.primaryDark,
@@ -53,9 +53,15 @@ class CustomTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,
-          errorText: formField.error,
+          isDense: false,
+          isCollapsed: false,
+          errorText: formField.value.isEmpty ? null : formField.error,
           suffixIcon: suffix,
           prefixIcon: prefix,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: SizerUtil.p12.w,
+            vertical: SizerUtil.p12.w,
+          ),
           focusedBorder: context.theme.inputDecorationTheme.focusedBorder
               ?.copyWith(
                 borderSide: BorderSide(
@@ -63,7 +69,7 @@ class CustomTextFormField extends StatelessWidget {
                 ),
               ),
         ),
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: inputType,
         onChanged: onChanged != null ? (value) => onChanged!(value) : null,
         onFieldSubmitted: onFieldSubmitted != null
             ? (value) => onFieldSubmitted!(value)
