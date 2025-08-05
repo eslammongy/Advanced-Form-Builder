@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:form_builder/form_builder/controllers/form_state.dart';
 import 'package:form_builder/utils/form_validators.dart';
 import 'package:riverpod/riverpod.dart';
@@ -17,8 +16,8 @@ enum FieldTypes {
 class FormNotifier extends StateNotifier<FormState> {
   FormNotifier() : super(const FormState());
 
-  void setFormType(FormType formType) {
-    state = state.copyWith(formType: formType);
+  void setFormType({FormType type = FormType.signIn}) {
+    state = state.copyWith(formType: type);
     _validateForm();
   }
 
@@ -33,13 +32,11 @@ class FormNotifier extends StateNotifier<FormState> {
   }
 
   void updateEmail(String value) {
-    final error = _shouldValidateField(FieldTypes.email)
-        ? FormValidators.validateEmail(value)
-        : null;
+    final error = FormValidators.validateEmail(value);
     state = state.copyWith(
       email: FieldType(value: value, error: error, isValid: error == null),
     );
-    _validateForm();
+    // _validateForm();
   }
 
   void updatePassword(String value) {
@@ -148,8 +145,8 @@ class FormNotifier extends StateNotifier<FormState> {
     bool isValid = true;
 
     for (final field in requiredFields) {
-      final FieldType = _getFieldType(field);
-      if (!FieldType.isValid || FieldType.value.isEmpty) {
+      final fieldType = _getFieldType(field);
+      if (!fieldType.isValid || fieldType.value.isEmpty) {
         isValid = false;
         break;
       }
@@ -207,93 +204,19 @@ class FormNotifier extends StateNotifier<FormState> {
     try {
       // Simulate API call
       await Future.delayed(const Duration(seconds: 2));
-      // Handle successful submission
-      debugPrint('Form submitted successfully for ${state.formType.name}');
-      // Reset form or navigate as needed
-      _resetForm();
+      resetForm();
     } catch (e) {
-      // Handle error
-      debugPrint('Error submitting form: $e');
-    } finally {
       state = state.copyWith(isSubmitting: false);
     }
   }
 
-  void _resetForm() {
+  void resetForm() {
     state = FormState(formType: state.formType);
-  }
-
-  void validateAllFields() {
-    final requiredFields = _getRequiredFields();
-
-    for (final field in requiredFields) {
-      final currentField = _getFieldType(field);
-      final error = _getValidationError(field, currentField.value);
-
-      if (error != null) {
-        _updateFieldWithError(field, currentField.value, error);
-      }
-    }
-
-    _validateForm();
-  }
-
-  String? _getValidationError(FieldTypes fieldName, String value) {
-    switch (fieldName) {
-      case FieldTypes.userName:
-        return FormValidators.validateUserName(value);
-      case FieldTypes.email:
-        return FormValidators.validateEmail(value);
-      case FieldTypes.password:
-        return FormValidators.validatePassword(value);
-      case FieldTypes.confirmPassword:
-        return FormValidators.validateConfirmPassword(
-          value,
-          state.password.value,
-        );
-      case FieldTypes.phoneNumber:
-        return FormValidators.validatePhoneNumber(value);
-      case FieldTypes.userId:
-        return FormValidators.validateUserId(value);
-      case FieldTypes.rule:
-        return FormValidators.validateRule(value);
-      case FieldTypes.privacyPolicy:
-        return FormValidators.validatePrivacyPolicy(value);
-    }
-  }
-
-  void _updateFieldWithError(FieldTypes fieldName, String value, String error) {
-    final field = FieldType(value: value, error: error, isValid: false);
-
-    switch (fieldName) {
-      case FieldTypes.userName:
-        state = state.copyWith(userName: field);
-        break;
-      case FieldTypes.email:
-        state = state.copyWith(email: field);
-        break;
-      case FieldTypes.password:
-        state = state.copyWith(password: field);
-        break;
-      case FieldTypes.confirmPassword:
-        state = state.copyWith(confirmPassword: field);
-        break;
-      case FieldTypes.phoneNumber:
-        state = state.copyWith(phoneNumber: field);
-        break;
-      case FieldTypes.userId:
-        state = state.copyWith(userId: field);
-        break;
-      case FieldTypes.rule:
-        state = state.copyWith(rule: field);
-        break;
-      case FieldTypes.privacyPolicy:
-        state = state.copyWith(privacyPolicy: field);
-        break;
-    }
   }
 }
 
-final formProvider = StateNotifierProvider<FormNotifier, FormState>((ref) {
+final formNotifierProvider = StateNotifierProvider<FormNotifier, FormState>((
+  ref,
+) {
   return FormNotifier();
 });
