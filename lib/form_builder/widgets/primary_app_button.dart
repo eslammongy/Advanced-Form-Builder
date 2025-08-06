@@ -12,7 +12,7 @@ class AppPrimaryButton extends StatelessWidget {
   final IconData? leadingIcon;
   final IconData? trailingIcon;
   final bool isLoading;
-  final bool isDisabled;
+  final bool isEnabled;
   final EdgeInsets margin;
   final MainAxisAlignment mainAlignment;
   final Color? txtColor;
@@ -34,7 +34,7 @@ class AppPrimaryButton extends StatelessWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.isLoading = false,
-    this.isDisabled = false,
+    this.isEnabled = false,
     this.mainAlignment = MainAxisAlignment.center,
     this.margin = const EdgeInsets.all(0),
     this.txtColor,
@@ -69,7 +69,7 @@ class AppPrimaryButton extends StatelessWidget {
         break;
     }
 
-    if (isDisabled) {
+    if (!isEnabled) {
       bgColor = bgColor.withValues(alpha: 0.5);
       textColor = textColor.withValues(alpha: 0.5);
     }
@@ -77,7 +77,7 @@ class AppPrimaryButton extends StatelessWidget {
     return Padding(
       padding: margin,
       child: ElevatedButton(
-        onPressed: isDisabled
+        onPressed: !isEnabled
             ? null
             : () {
                 HapticFeedback.mediumImpact();

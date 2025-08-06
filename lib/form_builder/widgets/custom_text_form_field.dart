@@ -30,7 +30,7 @@ class CustomTextFormField extends StatelessWidget {
   final Color? hintColor;
   final Widget? suffix;
   final Widget? prefix;
-  final FieldType formField;
+  final MainFormField formField;
   final TextInputType inputType;
   final TextEditingController? controller;
 

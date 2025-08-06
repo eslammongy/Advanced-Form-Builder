@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:form_builder/form_builder/controllers/form_controller.dart';
+import 'package:form_builder/form_builder/controllers/main_form_notifier.dart';
 import 'package:form_builder/form_builder/widgets/custom_text_form_field.dart';
 import 'package:form_builder/form_builder/widgets/primary_app_button.dart';
 import 'package:form_builder/theme/app_strings.dart';
@@ -12,12 +12,15 @@ class SignInForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userEmail = ref.watch(
-      formNotifierProvider.select((value) => value.email),
+      signInFormProvider.select((value) => value.email),
     );
     final userPassword = ref.watch(
-      formNotifierProvider.select((value) => value.password),
+      signInFormProvider.select((value) => value.password),
     );
-    final formNotifier = ref.read(formNotifierProvider.notifier);
+    final isValidForm = ref.watch(
+      signInFormProvider.select((value) => value.isFormValid),
+    );
+    final formNotifier = ref.read(signInFormProvider.notifier);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -46,7 +49,7 @@ class SignInForm extends ConsumerWidget {
           text: AppStrings.signIN,
           variant: ButtonVariant.primary,
           width: double.maxFinite,
-          isDisabled: !userEmail.isValid || !userPassword.isValid,
+          isEnabled: isValidForm,
           margin: EdgeInsets.symmetric(horizontal: 20.w),
           onPressed: () {},
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:form_builder/form_builder/controllers/form_controller.dart';
+import 'package:form_builder/form_builder/controllers/main_form_notifier.dart';
 import 'package:form_builder/form_builder/widgets/custom_text_form_field.dart';
 import 'package:form_builder/form_builder/widgets/primary_app_button.dart';
 import 'package:form_builder/theme/app_strings.dart';
@@ -11,7 +11,7 @@ class SignUpForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formState = ref.watch(formNotifierProvider);
+    final formState = ref.watch(signUpFormProvider);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -66,7 +66,7 @@ class SignUpForm extends ConsumerWidget {
           text: AppStrings.signUp,
           variant: ButtonVariant.primary,
           width: double.maxFinite,
-          isDisabled: formState.isFormValid == false,
+          isEnabled: formState.isFormValid,
           margin: EdgeInsets.symmetric(horizontal: 20.w),
           onPressed: () {},
         ),
