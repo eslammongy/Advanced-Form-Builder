@@ -41,6 +41,7 @@ class CustomTextFormField extends StatelessWidget {
       width: double.infinity,
       child: TextFormField(
         controller: controller,
+        initialValue: formField.value,
         style: context.textTheme.bodyMedium?.copyWith(
           color: context.customColors.textPrimary,
         ),
@@ -55,7 +56,7 @@ class CustomTextFormField extends StatelessWidget {
           hintText: hint,
           isDense: false,
           isCollapsed: false,
-          errorText: formField.value.isEmpty ? null : formField.error,
+          errorText: formField.error,
           suffixIcon: suffix,
           prefixIcon: prefix,
           contentPadding: EdgeInsets.symmetric(

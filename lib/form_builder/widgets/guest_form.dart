@@ -15,6 +15,7 @@ class GuestForm extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+         SizerUtil.gapH(8),
         CustomTextFormField(
           inputType: TextInputType.name,
           formField: formState.userName,

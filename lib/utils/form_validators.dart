@@ -35,7 +35,7 @@ class FormValidators {
       return 'Password must be at least 8 characters';
     }
     if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)').hasMatch(value)) {
-      return 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+      return 'Password must contain at least one A, a, and a number';
     }
     return null;
   }

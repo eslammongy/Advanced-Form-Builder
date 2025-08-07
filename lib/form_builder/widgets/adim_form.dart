@@ -15,6 +15,7 @@ class AdminForm extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        SizerUtil.gapH(8),
         CustomTextFormField(
           inputType: TextInputType.text,
           formField: formState.userId,
