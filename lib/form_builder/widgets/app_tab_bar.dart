@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:form_builder/form_builder/widgets/tab_bar_item.dart';
 import 'package:form_builder/theme/app_strings.dart';
 import 'package:form_builder/utils/app_extensions.dart';
 import 'package:form_builder/utils/sizer_util.dart';
@@ -26,12 +25,24 @@ class AppTabBar extends StatelessWidget {
             labelColor: Colors.white,
             unselectedLabelColor: context.customColors.textPrimary,
             tabs: [
-              TabItem(title: AppStrings.signIN),
-              TabItem(title: AppStrings.signUp),
-              TabItem(title: AppStrings.admin),
-              TabItem(title: AppStrings.guest),
+              buildTabItem(context, AppStrings.signIN),
+              buildTabItem(context, AppStrings.signUp),
+              buildTabItem(context, AppStrings.admin),
+              buildTabItem(context, AppStrings.guest),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Tab buildTabItem(BuildContext context, String title) {
+    return Tab(
+      child: Text(
+        title,
+        overflow: TextOverflow.ellipsis,
+        style: context.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w600,
         ),
       ),
     );

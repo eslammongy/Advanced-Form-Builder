@@ -5,15 +5,6 @@ import 'package:form_builder/form_builder/controllers/signin_form_notifier.dart'
 import 'package:form_builder/form_builder/controllers/signup_form_notifier.dart';
 import 'package:riverpod/riverpod.dart';
 
-class MainFormNotifier extends StateNotifier<MainFormState> {
-  MainFormNotifier() : super(const MainFormState());
-
-  void setFormType(FormType formType) {
-    state = state.copyWith(currentFormType: formType);
-  }
-
-  FormType get currentFormType => state.currentFormType;
-}
 
 // Provider instances for each form type
 final signInFormProvider =
@@ -36,8 +27,3 @@ final adminFormProvider =
       return AdminFormNotifier();
     });
 
-final mainFormProvider = StateNotifierProvider<MainFormNotifier, MainFormState>(
-  (ref) {
-    return MainFormNotifier();
-  },
-);

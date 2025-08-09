@@ -1,4 +1,4 @@
-
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder/form_builder/controllers/form_state.dart';
 import 'package:form_builder/utils/form_validators.dart';
@@ -9,7 +9,11 @@ class AdminFormNotifier extends StateNotifier<AdminFormState> {
   void updateUserName(String value) {
     final error = FormValidators.validateUserName(value);
     state = state.copyWith(
-      userName: MainFormField(value: value, error: error, isValid: error == null),
+      userName: MainFormField(
+        value: value,
+        error: error,
+        isValid: error == null,
+      ),
     );
     _validateForm();
   }
@@ -22,11 +26,16 @@ class AdminFormNotifier extends StateNotifier<AdminFormState> {
     _validateForm();
   }
 
-  void updateRule(String value) {
+  void updateRule(String? value) {
     final error = FormValidators.validateRule(value);
     state = state.copyWith(
-      rule: MainFormField(value: value, error: error, isValid: error == null),
+      rule: MainFormField(
+        value: value ?? "",
+        error: error,
+        isValid: error == null,
+      ),
     );
+    debugPrint("Is valid: ${state.rule.isValid}");
     _validateForm();
   }
 

@@ -5,35 +5,38 @@ import 'package:form_builder/form_builder/controllers/main_form_notifier.dart';
 import 'package:form_builder/theme/app_colors.dart';
 import 'package:form_builder/utils/app_extensions.dart';
 
-enum Rules { manger, admin, superAdmin, database, server }
-
-//create a string extension to convert first letter to uppercase
-extension StringExtension on String {
-  String get capitalize => '${this[0].toUpperCase()}${substring(1)}';
-}
-
 class RulesDropdownMenu extends StatelessWidget {
   const RulesDropdownMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Rules? selectedValue;
-
     return Consumer(
       builder: (context, ref, child) {
         final adminFormNotifier = ref.read(adminFormProvider.notifier);
-        return DropdownButtonFormField2<Rules>(
+        final adminFormState = ref.watch(adminFormProvider);
+        final rule = adminFormState.rule;
+        return DropdownButtonFormField2<SystemRole>(
           isExpanded: true,
-          decoration: buttonDecoration(),
+          decoration: InputDecoration(
+            enabledBorder: rule.isValid
+                ? context.theme.inputDecorationTheme.enabledBorder
+                : context.theme.inputDecorationTheme.enabledBorder?.copyWith(
+                    borderSide: BorderSide(color: context.colorScheme.error),
+                  ),
+          ),
           hint: Text(
             'Select Your Rule',
             style: context.textTheme.labelMedium?.copyWith(
               fontWeight: FontWeight.w600,
+              color: rule.isValid
+                  ? context.customColors.textPrimary
+                  : AppColors.errorDark,
             ),
           ),
-          items: Rules.values
+
+          items: SystemRole.values
               .map(
-                (item) => DropdownMenuItem<Rules>(
+                (item) => DropdownMenuItem<SystemRole>(
                   value: item,
                   child: Text(
                     item.name.capitalize,
@@ -43,18 +46,30 @@ class RulesDropdownMenu extends StatelessWidget {
               )
               .toList(),
           onChanged: (value) {
-            selectedValue = value;
-            adminFormNotifier.updateRule(selectedValue!.name);
+            adminFormNotifier.updateRule(value?.name);
+          },
+          onMenuStateChange: (isOpen) {
+            if (!isOpen && rule.value.isEmpty) {
+              adminFormNotifier.updateRule(null);
+            }
           },
           buttonStyleData: const ButtonStyleData(
             padding: EdgeInsets.only(right: 8),
           ),
-          iconStyleData: const IconStyleData(
-            icon: Icon(Icons.arrow_drop_down, color: AppColors.primaryDark),
+          iconStyleData: IconStyleData(
+            icon: Icon(
+              Icons.arrow_drop_down,
+              color: rule.isValid ? AppColors.primaryDark : AppColors.errorDark,
+            ),
             iconSize: 24,
           ),
           dropdownStyleData: DropdownStyleData(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+            elevation: 4,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+
+              color: context.customColors.borderColor,
+            ),
           ),
           menuItemStyleData: const MenuItemStyleData(
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -63,11 +78,16 @@ class RulesDropdownMenu extends StatelessWidget {
       },
     );
   }
+}
 
-  InputDecoration buttonDecoration() {
-    return InputDecoration(
-      contentPadding: const EdgeInsets.symmetric(vertical: 14),
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-    );
-  }
+enum SystemRole {
+  projectManager,
+  systemAdmin,
+  superAdmin,
+  databaseAdmin,
+  serverAdmin,
+}
+
+extension StringExtension on String {
+  String get capitalize => '${this[0].toUpperCase()}${substring(1)}';
 }

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SizerUtil.init(context);
     return MaterialApp(
-      title: "FormBuilder",
+      title: "FormValidator",
       theme: AppTheme.darkTheme,
       home: const HomeScreen(),
     );

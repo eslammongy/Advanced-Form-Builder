@@ -12,7 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- 
     return Scaffold(
       body: SafeArea(
         minimum: EdgeInsets.only(
@@ -26,8 +25,8 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(Icons.person_rounded, size: 100.h),
-              Text("Form Builder", style: context.textTheme.titleLarge),
+              Icon(Icons.verified_user_rounded, size: 100.h),
+              Text("Form Validator", style: context.textTheme.titleLarge),
               SizerUtil.gapH(40),
               const AppTabBar(),
               SizerUtil.gapH(40),
