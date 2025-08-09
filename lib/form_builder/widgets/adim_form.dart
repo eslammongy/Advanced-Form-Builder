@@ -45,7 +45,7 @@ class AdminForm extends ConsumerWidget {
         RulesDropdownMenu(),
         SizerUtil.gapH(32),
         AppPrimaryButton(
-          text: AppStrings.signIN,
+          text: AppStrings.submit,
           variant: ButtonVariant.primary,
           width: double.maxFinite,
           isEnabled: formState.isFormValid,

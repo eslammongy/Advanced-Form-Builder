@@ -15,7 +15,7 @@ class GuestForm extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-         SizerUtil.gapH(8),
+        SizerUtil.gapH(8),
         CustomTextFormField(
           inputType: TextInputType.name,
           formField: formState.userName,
@@ -27,7 +27,7 @@ class GuestForm extends ConsumerWidget {
 
         SizerUtil.gapH(32),
         AppPrimaryButton(
-          text: AppStrings.signIN,
+          text: AppStrings.submit,
           variant: ButtonVariant.primary,
           width: double.maxFinite,
           margin: EdgeInsets.symmetric(horizontal: 20.w),
